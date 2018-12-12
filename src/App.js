@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import Header from './components/header/Header';
 import Card from './components/card/Card';
 import GameOver from './components/card/GameOver';
@@ -26,8 +26,8 @@ class App extends PureComponent {
     const cardId = event.target.id;
     const newFlipps = this.state.isFlipped.slice();
     this.setState({
-        prevSelectedCard: this.state.shuffledCard[cardId],
-        prevCardId: cardId
+      prevSelectedCard: this.state.shuffledCard[cardId],
+      prevCardId: cardId
     });
 
     if (newFlipps[cardId] === false) {
@@ -84,10 +84,10 @@ class App extends PureComponent {
 
   render() {
     return (
-     <div>
-       <Header restartGame={this.restartGame} />
-       { this.isGameOver() ? <GameOver restartGame={this.restartGame} /> :
-       <div className="grid-container">
+      <Fragment>
+        <Header restartGame={this.restartGame} />
+        { this.isGameOver() ? <GameOver restartGame={this.restartGame} /> :
+        <div className="grid-container">
           {
             this.state.shuffledCard.map((cardNumber, index) =>
               <Card
@@ -100,8 +100,8 @@ class App extends PureComponent {
             )
           }
         </div>
-       }
-     </div>
+        }
+      </Fragment>
     );
   }
 }
